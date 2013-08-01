@@ -37,13 +37,13 @@ Send Auto Response to SMS sender. Get Email on receiving the message. Make calle
 
 #### After all these settings you can go ahead and configure your Plivo App attached to the Plivo DID
 
-1.  **answer_url** field of the application should be: **http://ryan-sms-voice.herokuapp.com/acceptcalls/** with method as **POST**
-2.  **message_url** field of the application should be: **http://ryan-sms-voice.herokuapp.com/acceptsms/** with method as **POST**
+1.  **answer_url** field of the application should be: **http://xyz.herokuapp.com/acceptcalls/** with method as **POST**
+2.  **message_url** field of the application should be: **http://xyz.herokuapp.com/acceptsms/** with method as **POST**
 3.  Save the Plivo application and you are all set!
 
 #### What should be expected?
 
-*   When an incoming SMS is received by Plivo DID Plivo makes an HTTP REQUEST to the message url of the application attached to the DID. That application here is **http://ryan-sms-voice.herokuapp.com/acceptsms/** along with certain paramteres like From To Text Type. This example app replies back to sender an automatic response which was set in the previous SMS Controller step.
+*   When an incoming SMS is received by Plivo DID Plivo makes an HTTP REQUEST to the message url of the application attached to the DID. That application here is **http://xyz.herokuapp.com/acceptsms/** along with certain paramteres like From To Text Type. This example app replies back to sender an automatic response which was set in the previous SMS Controller step.
 *   Also it internally sends an email to the email id configured in the Email Controller step.
 *   When an Incoming calls come to the Plivo DID then a recorded media file is played which was configured in Voice Call Controller Step.
 
