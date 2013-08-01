@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Welcome to SMS and Voice Setup</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+</head>
+<body>
+    <h1>Welcome Ryan!</h1>
+
+    <div class="row">
+    	<div class="span10 offset1">
+    		<form class="form-horizontal well" action="/set_sms_response/" method="post">
+        		<fieldset>
+          			<legend>SMS Auto Response Controller</legend>
+          			<div>
+          				<span class="label label-success">{{success_response}}</span>
+          			</div>
+          			<div class="control-group">
+            			<label class="control-label" for="input01">Input SMS Reply</label>
+            			<div class="controls">
+              				<input type="text" class="input-xlarge" id="autoreply" name="autoreply" />
+              				<p class="help-block">Type in auto response. Only English supported. No accented characters are supported!</p>
+            			</div>
+          			</div>          			
+          	        <div class="form-actions">
+            			<button type="submit" class="btn btn-success btn-small">Save changes</button>
+          			</div>
+
+        		</fieldset>
+		    </form>
+    	</div>
+    </div>
+
+    <div class="row">
+    	<div class="span10 offset1">
+    		<form class="form-horizontal well" action="/set_email_config/" method="post">
+        		<fieldset>
+          			<legend>Email Controller</legend>
+          			<div>
+          				<span class="label label-success">{{email_success_response}}</span>
+          			</div>          			
+          			<div class="control-group">
+            			<label class="control-label" for="input01">From Email:</label>
+            			<div class="controls">
+              				<input type="text" class="input-xlarge" id="from_email" name="from_email" />
+              				<p class="help-block">Input Email Id</p>
+            			</div>
+          			</div>
+          			<div class="control-group">
+            			<label class="control-label" for="input01">Mailgun API Token:</label>
+            			<div class="controls">
+              				<input type="password" class="input-xlarge" id="mailgun_token" name="mailgun_token" />
+              				<p class="help-block">Input mailgun token</p>
+            			</div>
+          			</div>     
+          			<div class="control-group">
+            			<label class="control-label" for="input01">Mailgun Email Domain:</label>
+            			<div class="controls">
+              				<input type="text" class="input-xlarge" id="domain" name="domain" />
+              				<p class="help-block">Input mailgun email domain</p>
+            			</div>
+          			</div>           			
+          			<div class="control-group">
+            			<label class="control-label" for="input01">Email To:</label>
+            			<div class="controls">
+              				<input type="text" class="input-xlarge" id="to_email" name="to_email" />
+              				<p class="help-block">To Address where email is to be sent</p>
+            			</div>
+          			</div>     
+          			<div class="control-group">
+            			<label class="control-label" for="input01">Mail Subject:</label>
+            			<div class="controls">
+              				<input type="text" class="input-xlarge" id="mail_subject" name="mail_subject" />
+              				<p class="help-block">Subject of the email</p>
+            			</div>
+          			</div>       			          			       			
+          	        <div class="form-actions">
+            			<button type="submit" class="btn btn-success btn-small">Save changes</button>
+          			</div>
+
+        		</fieldset>
+		    </form>
+    	</div>
+    </div>
+
+
+    <div class="row">
+    	<div class="span10 offset1">
+    		<form class="form-horizontal well" action="/set_recording_voice/" method="post">
+        		<fieldset>
+          			<legend>Voice Call Controller</legend>
+          			<div>
+          				<span class="label label-success">{{playfile_success_response}}</span>
+          			</div>          			
+          			<div class="control-group">
+            			<label class="control-label" for="input01">Mp3/WAV URL:</label>
+            			<div class="controls">
+              				<input type="text" class="input-xlarge" id="play_url" name="play_url" />
+              				<p class="help-block">URL of the audio file. Please note that only POST request is supported to the above URL</p>
+            			</div>
+          			</div> 
+
+          			          			          			       			
+          	        <div class="form-actions">
+            			<button type="submit" class="btn btn-success btn-small">Save changes</button>
+          			</div>
+
+        		</fieldset>
+		    </form>
+    	</div>
+    </div>
+    <form action="/help/" method="POST">
+    	<div class="form-actions">
+    		<button type="submit" class="btn btn-success btn-small">Help</button>
+    	</div>
+	</form>
+
+</body>
+</html>

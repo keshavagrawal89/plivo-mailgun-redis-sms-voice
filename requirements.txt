@@ -1,0 +1,13 @@
+Flask==0.9
+Jinja2==2.6
+altgraph==0.9
+numpy==1.6.1
+plivo==0.4.1
+psutil==0.7.1
+python-dateutil==1.5
+redis==2.7.5
+requests==1.2.0
+uuid==1.30
+virtualenv==1.9.1
+wsgiref==0.1.2
+xattr==0.6.2
