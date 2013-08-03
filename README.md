@@ -11,6 +11,7 @@
 *   Text box besides each message can be used to type in the reply and hit "Reply"
 *   Messages already replied will have staus as "Replied!"
 *   Messages awaiting reply will show up as "Waiting Reply!"
+*   Messages can be deleted permanently from UI by clicking on "Delete"
 *   Columns of the table can be sorted to suit the requirement.
 *   Also it internally sends an email to the email id configured in the Email Controller step.
 *   When an Incoming calls come to the Plivo DID then a recorded media file is played which can be configured in Voice Call Controller.        
