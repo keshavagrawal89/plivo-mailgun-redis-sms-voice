@@ -1,3 +1,6 @@
+## This app can be deployed on Heroku with RedisToGo addon
+
+
 ## How, What and Where?
 
 
@@ -46,4 +49,8 @@
 2.  **message_url** field of the application should be: **http://xyzapp-sms-voice.herokuapp.com/acceptsms/** with method as **POST**
 3.  Save the Plivo application and you are all set!
 
+#### Things needs to be changed in handle.py file
+
+1. <auth_id> - Replace with your own plivo auth_id
+2. <auth_token> - Replace with your own plivo auth_token
 **Success** Enjoy!.
