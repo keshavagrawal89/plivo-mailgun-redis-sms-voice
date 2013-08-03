@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<title>Help</title>
+		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+		<script src="/static/bootstrap/js/sorttable.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	</head>
+  <script>
+
+    $(document).ready(function(){
+        $("a").click(function(event){
+          var sms_href = $(this).attr("id")
+          var _filter=sms_href.indexOf("sms_")
+          var str = "#sms_reply"+sms_href
+          alert(str)
+          var reply = $(str).val()
+          alert(reply)
+          alert(_filter)
+
+          if (_filter == 0){
+            console.log(sms_href)
+            $.post("/reply/",{sms_id:sms_href,reply:reply})
+            .done(function(){
+            location.reload();
+          });
+          }
+
+        });
+    });
+
+  </script>
+
+	<body>
+    <form action="/help/" method="POST">
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success btn-small">Help</button>
+      </div>
+      <div>
+        <a href="/">Go To Controller</a>
+      </div>
+    </form>
+    
+<section id="buttons">
+  <div class="page-header">
+    <h1>SMS Dashboard</h1>
+  </div>
+  <table class="sortable table table-striped">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>SMS</th>
+        <th>Time</th>
+        <th>Type Reply</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for counter in  range(no_of_sms) %}
+      <tr>
+      	<td>{{sms_object['sms_from'][counter]}}</td>
+      	<td>{{sms_object['sms_to'][counter]}}</td>
+      	<td>{{sms_object['sms_text'][counter]}}</td>
+      	<td>{{sms_object['sms_time'][counter]}}</td>
+        <td><input type = "text" id = "sms_reply{{sms_object['sms_key'][counter]}}" name = "sms_reply" /></td>
+        {% if sms_object['sms_replied'][counter] == 'y' %}
+          <td><span class="label label-success">Replied!</span></td>
+        {% else %}
+          <td><span class="label label-warning">Waiting Reply!</span></td>
+        {% endif %}
+        <td><a href="#" id="{{sms_object['sms_key'][counter]}}">Reply</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+</section>
+
+
+	</body>
+</html>

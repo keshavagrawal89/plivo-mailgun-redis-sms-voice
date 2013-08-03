@@ -5,8 +5,16 @@
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
 </head>
 <body>
-    <h1>Welcome Ryan!</h1>
-
+    <h1>Welcome</h1>
+    <form action="/help/" method="POST">
+    	<div class="form-actions">
+    		<button type="submit" class="btn btn-success btn-small">Help</button>
+    	</div>
+      <div>
+        <a href="/sms-dashboard/">SMS Dashboard</a>
+      </div>
+	   </form>
+  
     <div class="row">
     	<div class="span10 offset1">
     		<form class="form-horizontal well" action="/set_sms_response/" method="post">
@@ -109,11 +117,7 @@
 		    </form>
     	</div>
     </div>
-    <form action="/help/" method="POST">
-    	<div class="form-actions">
-    		<button type="submit" class="btn btn-success btn-small">Help</button>
-    	</div>
-	</form>
+
 
 </body>
 </html>
