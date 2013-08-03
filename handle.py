@@ -15,13 +15,13 @@ app = Flask(__name__)
 
 #redis = redis.Redis('localhost')
 
-redis_url = os.getenv('REDISTOGO_URL','redis://localhost:9444')
+redis_url = os.getenv('REDISTOGO_URL','redis://localhost:<redis_port>')
 redis = redis.from_url(redis_url)
 
 gl_autoreply = "Default reply"
-gl_voice_recording = ""
 
-auth_id = '<auth_id>
+
+auth_id = '<auth_id>'
 auth_token = '<auth_token>'
 
 
@@ -72,6 +72,7 @@ def accept_and_reply():
 	redis.hset(sms_key,"Text", text)
 	redis.hset(sms_key,"Time Received", time_sms_received)
 	redis.hset(sms_key,"Replied",'n')
+	redis.save()
 
 	send_auto_response(src,plivo_did,text)
 
@@ -124,7 +125,8 @@ def set_sms_response():
 
 	print autoreply
 	redis.set('auto_reply',autoreply)
-	
+	redis.save()
+
 	response = make_response(render_template("welcome.html", success_response = "SMS Auto Response saved!"))
 	response.headers['Content-type'] = 'text/html'
 	return response
@@ -143,6 +145,7 @@ def set_email_config():
 	redis.set('to_email',to_email)
 	redis.set('mail_subject',mail_subject)
 	redis.set('domain',domain)
+	redis.save()
 
 	response = make_response(render_template("welcome.html", email_success_response = "Email details saved!"))
 	response.headers['Content-type'] = 'text/html'
@@ -151,7 +154,7 @@ def set_email_config():
 
 def email_SMS(text, src, plivo_did):
 	SECRET_KEY = redis.get('mailgun_token')
-	from_email = "UserXYZ %s" % redis.get('from_email')
+	from_email = "User %s" % redis.get('from_email')
 	to_email = redis.get('to_email')
 	subject = redis.get('mail_subject')
 	domain = redis.get('domain')
@@ -180,15 +183,19 @@ def send_auto_response(src, plivo_did, text, ui_flag='False'):
 @app.route('/reply/', methods=['POST'])
 def send_ui_reply():
 	sms_id = request.form.get('sms_id')
-	sms_reply = request.form.get('reply')
+	sms_reply = request.form.get('action')
 
 	print "Here I am: SMS Id - %s" % sms_id
 
-	if sms_reply != "":
+	if ((sms_reply != "") and (not sms_id.startswith("del"))):
 		src = redis.hget(sms_id,'From')
 		plivo_did = redis.hget(sms_id,'Plivo DID')
 		redis.hset(sms_id,"Replied",'y')
+		redis.save()
 		send_auto_response(src, plivo_did, sms_reply, 'True')
+	elif ((sms_reply != "") and (sms_reply == "del")):
+		redis.delete(sms_id[4:])
+		redis.save()
 	return "OK"
 
 
@@ -197,6 +204,7 @@ def set_voice_recording():
 	play_url = request.form.get('play_url','')
 
 	redis.set('play_url',play_url)
+	redis.save()
 
 	response = make_response(render_template("welcome.html", playfile_success_response = "Play file details saved!"))
 	response.headers['Content-type'] = 'text/html'
