@@ -18,6 +18,9 @@
 
 #### Email Controller
 
+
+![alt tag](https://dl.dropboxusercontent.com/u/54579287/smsvoice/Email%20Controller.png)
+
 1.  For Email Service this app uses [Mailgun](http://www.mailgun.com/) [API](http://documentation.mailgun.com/)
 2.  Visit [Mailgun](http://www.mailgun.com/)
 3.  Create an account there.
@@ -35,11 +38,22 @@
 
 #### SMS Controller
 
+![alt tag](https://dl.dropboxusercontent.com/u/54579287/smsvoice/SMSautoresponder.png)
+
 1.  **Input SMS Reply** allows you to set the auto response for the incoming SMS on plivo DID
 2.  Enter the text
 3.  Click on "Save Changes"
 
+#### Reply directly from browser
+
+![alt tag](https://dl.dropboxusercontent.com/u/54579287/smsvoice/SMSdashboard.png)
+
+
 #### Voice Call Controller
+
+
+![alt tag](https://dl.dropboxusercontent.com/u/54579287/smsvoice/Voice%20call%20controller.png)
+
 
 1.  Enter the url of the audio file in the text box
 2.  Click on "Save Changes"
@@ -54,4 +68,11 @@
 
 1. <auth_id> - Replace with your own plivo auth_id
 2. <auth_token> - Replace with your own plivo auth_token
+
+
+#### Help
+
+![alt tag](https://dl.dropboxusercontent.com/u/54579287/smsvoice/help.png)
+
+
 **Success** Enjoy!.
